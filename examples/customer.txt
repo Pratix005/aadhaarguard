@@ -1,0 +1,9 @@
+Customer: Ravi Kumar
+Aadhaar: 3588 1399 8697
+PAN: ABCPE1234F
+GSTIN: 29XYYFP9730T2ZM
+Mobile: +91 98765 43210
+UPI: ravi.kumar@okaxis
+Bank: a/c 50100123456789, IFSC HDFC0001234
+Vehicle: KA 01 AB 1234
+Order 4521 shipped on 2026-11-21, total Rs 2,499.

@@ -1,0 +1,6 @@
+- id: bharatpii
+  name: bharatpii (Indian PII scan)
+  description: Fail if staged files contain Aadhaar, PAN, GSTIN, UPI IDs, phone numbers and other Indian PII.
+  entry: bharatpii scan
+  language: python
+  types: [text]
