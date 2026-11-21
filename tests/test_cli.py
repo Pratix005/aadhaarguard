@@ -2,7 +2,7 @@ import io
 import json
 import sys
 
-from bharatpii.cli import main
+from aadhaarguard.cli import main
 
 SAMPLE = "Customer PAN ABCPE1234F\nphone +91 98765 43210\n"
 

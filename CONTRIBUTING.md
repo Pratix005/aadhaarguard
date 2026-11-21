@@ -10,7 +10,7 @@ pytest
 
 ## Adding a detector
 
-Detectors live in `src/bharatpii/detectors.py`. Each one needs:
+Detectors live in `src/aadhaarguard/detectors.py`. Each one needs:
 
 - a regex. Start it with `_first(...)` instead of a leading lookbehind; see
   that function's docstring for why it's faster.
@@ -24,7 +24,7 @@ Detectors live in `src/bharatpii/detectors.py`. Each one needs:
 
 Then add it to `DEFAULT_DETECTORS`, and add tests in `tests/test_detect.py`:
 at least one positive case, the main false positive you're guarding against,
-and a round trip through `bharatpii.fake` if you add a generator.
+and a round trip through `aadhaarguard.fake` if you add a generator.
 
 Run `python scripts/benchmark.py` before and after; a new detector shouldn't
 make log scanning much slower.
@@ -32,7 +32,7 @@ make log scanning much slower.
 ## Test data
 
 Never commit real personal data, not even your own. Generate values with
-`bharatpii.fake` or build them in the test from a checksum function.
+`aadhaarguard.fake` or build them in the test from a checksum function.
 
 ## UPI handles
 

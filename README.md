@@ -1,24 +1,25 @@
-# bharatpii
+# aadhaarguard
 
-Find and redact Indian personal data in text: Aadhaar, PAN, GSTIN, UPI IDs,
-mobile numbers, vehicle registrations and more. Pure Python, no dependencies,
-Python 3.10+.
+Find and redact Indian personal data in text. Despite the name it covers 15
+kinds, not just Aadhaar: PAN, GSTIN, UPI IDs, mobile numbers, bank accounts,
+cards, vehicle registrations, driving licences and more (full list below).
+Pure Python, no dependencies, Python 3.10+.
 
 General-purpose PII tools handle emails and US-style numbers well, but they
 mostly don't know Indian formats. A regex for "12 digits" flags every order ID
-in your logs. bharatpii checks the check digits that Indian IDs carry
+in your logs. aadhaarguard checks the check digits that Indian IDs carry
 (Verhoeff for Aadhaar, mod-36 for GSTIN, Luhn for cards) and looks for
 keywords like "aadhaar", "a/c" or "आधार" near a match before it reports
 anything ambiguous.
 
 ```
-pip install bharatpii
+pip install aadhaarguard
 ```
 
 ## Command line
 
 ```
-$ bharatpii scan examples/customer.txt
+$ aadhaarguard scan examples/customer.txt
 examples/customer.txt:2:10: aadhaar XXXX XXXX 8697 (0.90)
 examples/customer.txt:3:6: pan XXXXXX234F (0.99)
 examples/customer.txt:4:8: gstin XXXXXXXXXXXT2ZM (0.99)
@@ -36,7 +37,7 @@ Values are partially masked in the output so the scan itself doesn't leak data
 into CI logs. Pass `--show` to see full values, or `--json` for machine output.
 
 ```
-$ bharatpii redact examples/customer.txt --style partial
+$ aadhaarguard redact examples/customer.txt --style partial
 Customer: Ravi Kumar
 Aadhaar: XXXX XXXX 8697
 PAN: XXXXXX234F
@@ -45,13 +46,13 @@ Order 4521 shipped on 2026-11-21, total Rs 2,499.
 ```
 
 Other options: `-o out.txt`, `-i` (in place), `--kinds aadhaar,pan`,
-`--min-confidence 0.8`, `-I` (also match lowercase IDs). `bharatpii kinds` lists
+`--min-confidence 0.8`, `-I` (also match lowercase IDs). `aadhaarguard kinds` lists
 every detector.
 
 ## Python
 
 ```python
-from bharatpii import scan, redact
+from aadhaarguard import scan, redact
 
 text = "Aadhaar 3588 1399 8697, call +91 98765 43210"
 
@@ -69,7 +70,7 @@ redact(text, style="hash")      # 'Aadhaar [AADHAAR:e786c1b9d1], call [PHONE:1a6
 Use `Scanner` to keep settings:
 
 ```python
-from bharatpii import Scanner
+from aadhaarguard import Scanner
 
 s = Scanner(kinds=["aadhaar", "pan", "phone"], min_confidence=0.8, ignore_case=True)
 s.contains_pii(user_message)
@@ -79,7 +80,7 @@ s.contains_pii(user_message)
 
 ```python
 import logging
-from bharatpii import RedactingFilter
+from aadhaarguard import RedactingFilter
 
 handler = logging.StreamHandler()
 handler.addFilter(RedactingFilter(style="partial"))
@@ -93,10 +94,10 @@ The filter redacts the formatted message and any exception traceback.
 
 ### Test data
 
-`bharatpii.fake` generates checksum-valid values for fixtures:
+`aadhaarguard.fake` generates checksum-valid values for fixtures:
 
 ```python
-from bharatpii.fake import Faker
+from aadhaarguard.fake import Faker
 
 f = Faker(seed=42)
 f.aadhaar(), f.pan(), f.gstin(state="27"), f.phone(), f.upi(), f.card(), f.vehicle()
@@ -151,7 +152,7 @@ than misses.
 - **No checksum** exists (or is public) for PAN, IFSC, passport, voter ID or
   vehicle numbers, so these rely on format and keywords.
 - **Names and addresses** are not detected. That needs NER (for example
-  Presidio or spaCy); bharatpii covers structured identifiers only.
+  Presidio or spaCy); aadhaarguard covers structured identifiers only.
 - **Uppercase by default** for PAN, GSTIN, IFSC, passport, voter ID and DL,
   because official formats are uppercase and it's about 4x faster. Use
   `ignore_case=True` / `-I` for user-typed input. Vehicle plates are always
@@ -169,17 +170,17 @@ than misses.
 
 ```yaml
 repos:
-  - repo: https://github.com/Pratix005/bharatpii
-    rev: v0.1.1
+  - repo: https://github.com/Pratix005/aadhaarguard
+    rev: v0.2.0
     hooks:
-      - id: bharatpii
+      - id: aadhaarguard
 ```
 
 ## Development
 
 ```
-git clone https://github.com/Pratix005/bharatpii
-cd bharatpii
+git clone https://github.com/Pratix005/aadhaarguard
+cd aadhaarguard
 python -m venv .venv && .venv/bin/pip install -e ".[dev]"   # Windows: .venv\Scripts\pip
 pytest
 ```

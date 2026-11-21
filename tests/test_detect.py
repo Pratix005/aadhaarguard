@@ -1,8 +1,8 @@
 import pytest
 
-from bharatpii import Scanner, scan
-from bharatpii.checksums import luhn_digit, verhoeff_digit
-from bharatpii.fake import Faker
+from aadhaarguard import Scanner, scan
+from aadhaarguard.checksums import luhn_digit, verhoeff_digit
+from aadhaarguard.fake import Faker
 
 F = Faker(seed=7)
 

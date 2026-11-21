@@ -2,8 +2,8 @@
 
 import time
 
-from bharatpii import Scanner
-from bharatpii.fake import Faker
+from aadhaarguard import Scanner
+from aadhaarguard.fake import Faker
 
 f = Faker(seed=1)
 pii_line = f"Order shipped to Ravi, phone {f.phone()}, PAN {f.pan()}, delivered at gate 4 after 6pm, SKU-2231.\n"

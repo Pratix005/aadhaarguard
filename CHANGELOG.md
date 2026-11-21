@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.0 - 2026-11-21
+
+- Renamed from `bharatpii` to `aadhaarguard` (package, import, CLI command,
+  pre-commit hook id). PyPI rejected `bharatpii` as too similar to an existing
+  project. 0.1.x was never published on PyPI. No functional changes.
+
 ## 0.1.1 - 2026-11-21
 
 - Require Python 3.10+. Python 3.9 is end-of-life and no longer available on
@@ -18,6 +24,6 @@ First release.
   patterns.
 - Redaction styles: tag, mask, partial, keyed hash.
 - `RedactingFilter` for the `logging` module.
-- CLI: `bharatpii scan | redact | kinds`, JSON output, masked output by default,
+- CLI: `aadhaarguard scan | redact | kinds`, JSON output, masked output by default,
   exit code 1 on findings, pre-commit hook.
-- `bharatpii.fake` for checksum-valid test fixtures.
+- `aadhaarguard.fake` for checksum-valid test fixtures.

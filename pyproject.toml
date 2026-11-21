@@ -3,9 +3,9 @@ requires = ["setuptools>=77"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "bharatpii"
-version = "0.1.1"
-description = "Find and redact Indian personal data (Aadhaar, PAN, GSTIN, UPI, phone, vehicle numbers and more) with checksum validation. No dependencies."
+name = "aadhaarguard"
+version = "0.2.0"
+description = "Find and redact Indian personal data (Aadhaar, PAN, GSTIN, UPI, phone, vehicle numbers and more; 15 kinds) with checksum validation. No dependencies."
 readme = "README.md"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
@@ -28,17 +28,17 @@ dependencies = []
 dev = ["pytest>=7"]
 
 [project.urls]
-Homepage = "https://github.com/Pratix005/bharatpii"
-Issues = "https://github.com/Pratix005/bharatpii/issues"
+Homepage = "https://github.com/Pratix005/aadhaarguard"
+Issues = "https://github.com/Pratix005/aadhaarguard/issues"
 
 [project.scripts]
-bharatpii = "bharatpii.cli:main"
+aadhaarguard = "aadhaarguard.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.setuptools.package-data]
-bharatpii = ["py.typed"]
+aadhaarguard = ["py.typed"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests", "src"]

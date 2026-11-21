@@ -1,6 +1,6 @@
 import pytest
 
-from bharatpii.checksums import (
+from aadhaarguard.checksums import (
     gstin_check_char,
     gstin_valid,
     luhn_digit,

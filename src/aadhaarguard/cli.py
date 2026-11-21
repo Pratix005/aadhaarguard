@@ -1,4 +1,4 @@
-"""Command line: bharatpii scan | redact | kinds"""
+"""Command line: aadhaarguard scan | redact | kinds"""
 
 from __future__ import annotations
 
@@ -90,7 +90,7 @@ def cmd_redact(args: argparse.Namespace) -> int:
     else:
         text = _read_text(args.path)
         if text is None:
-            print(f"bharatpii: cannot read {args.path} as text", file=sys.stderr)
+            print(f"aadhaarguard: cannot read {args.path} as text", file=sys.stderr)
             return 2
     out = scanner.redact(text, style=args.style)
     if args.in_place and args.path not in (None, "-"):
@@ -112,8 +112,8 @@ def cmd_kinds(args: argparse.Namespace) -> int:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    p = argparse.ArgumentParser(prog="bharatpii", description="Find and redact Indian personal data.")
-    p.add_argument("--version", action="version", version=f"bharatpii {__version__}")
+    p = argparse.ArgumentParser(prog="aadhaarguard", description="Find and redact Indian personal data.")
+    p.add_argument("--version", action="version", version=f"aadhaarguard {__version__}")
     sub = p.add_subparsers(dest="command", required=True)
 
     def common(sp: argparse.ArgumentParser) -> None:
@@ -152,7 +152,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     try:
         return args.func(args)
     except ValueError as e:
-        print(f"bharatpii: {e}", file=sys.stderr)
+        print(f"aadhaarguard: {e}", file=sys.stderr)
         return 2
 
 

@@ -1,7 +1,7 @@
 """A logging.Filter that redacts Indian PII before records are written.
 
     import logging
-    from bharatpii import RedactingFilter
+    from aadhaarguard import RedactingFilter
 
     handler = logging.StreamHandler()
     handler.addFilter(RedactingFilter(style="partial"))

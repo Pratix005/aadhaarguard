@@ -4,7 +4,7 @@ A randomly generated Aadhaar, PAN or phone number can still belong to a
 real person. Use these only as test fixtures; never publish them as
 "sample customer data".
 
-    from bharatpii import fake
+    from aadhaarguard import fake
     f = fake.Faker(seed=42)
     f.aadhaar()   # 12 digits in groups of 4, Verhoeff-valid
     f.gstin()     # 15 characters with a correct check character

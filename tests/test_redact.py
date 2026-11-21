@@ -3,8 +3,8 @@ import logging
 
 import pytest
 
-from bharatpii import RedactingFilter, Scanner, partial_mask, redact
-from bharatpii.fake import Faker
+from aadhaarguard import RedactingFilter, Scanner, partial_mask, redact
+from aadhaarguard.fake import Faker
 
 F = Faker(seed=3)
 
