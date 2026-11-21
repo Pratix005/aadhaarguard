@@ -4,7 +4,7 @@ from .detectors import DEFAULT_DETECTORS, KINDS, Detector
 from .logfilter import RedactingFilter
 from .scanner import STYLES, Match, Scanner, partial_mask, redact, scan
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 __all__ = [
     "DEFAULT_DETECTORS",

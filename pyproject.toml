@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bharatpii"
-version = "0.1.0"
+version = "0.1.1"
 description = "Find and redact Indian personal data (Aadhaar, PAN, GSTIN, UPI, phone, vehicle numbers and more) with checksum validation. No dependencies."
 readme = "README.md"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 authors = [{ name = "Pratix005" }]
 keywords = ["pii", "india", "aadhaar", "pan", "gstin", "upi", "redaction", "dpdp", "privacy", "data-masking"]
 classifiers = [

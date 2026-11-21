@@ -2,7 +2,7 @@
 
 Find and redact Indian personal data in text: Aadhaar, PAN, GSTIN, UPI IDs,
 mobile numbers, vehicle registrations and more. Pure Python, no dependencies,
-Python 3.9+.
+Python 3.10+.
 
 General-purpose PII tools handle emails and US-style numbers well, but they
 mostly don't know Indian formats. A regex for "12 digits" flags every order ID
@@ -170,7 +170,7 @@ than misses.
 ```yaml
 repos:
   - repo: https://github.com/Pratix005/bharatpii
-    rev: v0.1.0
+    rev: v0.1.1
     hooks:
       - id: bharatpii
 ```

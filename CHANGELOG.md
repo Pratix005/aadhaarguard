@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.1 - 2026-11-21
+
+- Require Python 3.10+. Python 3.9 is end-of-life and no longer available on
+  GitHub's Ubuntu runners, so 3.9 support could not be tested.
+- CI: test on 3.10-3.14, update to checkout@v7 and setup-python@v7.
+
 ## 0.1.0 - 2026-11-21
 
 First release.
