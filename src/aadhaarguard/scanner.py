@@ -172,6 +172,8 @@ def partial_mask(kind: str, value: str, mask_char: str = "X") -> str:
         return local[:1] + mask_char * max(len(local) - 1, 3) + "@" + domain
     alnum_positions = [i for i, c in enumerate(value) if c.isalnum()]
     keep = set(alnum_positions[-4:]) if len(alnum_positions) > 4 else set()
+    if kind == "phone":
+        keep |= set(alnum_positions[:-10])  # +91 / 0 prefix is not sensitive
     return "".join(
         c if (not c.isalnum() or i in keep) else mask_char for i, c in enumerate(value)
     )

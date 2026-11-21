@@ -5,6 +5,12 @@ kinds, not just Aadhaar: PAN, GSTIN, UPI IDs, mobile numbers, bank accounts,
 cards, vehicle registrations, driving licences and more (full list below).
 Pure Python, no dependencies, Python 3.10+.
 
+[![PyPI](https://img.shields.io/pypi/v/aadhaarguard)](https://pypi.org/project/aadhaarguard/)
+[![CI](https://github.com/Pratix005/aadhaarguard/actions/workflows/ci.yml/badge.svg)](https://github.com/Pratix005/aadhaarguard/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE)
+
+![aadhaarguard scanning and redacting a customer record](https://raw.githubusercontent.com/Pratix005/aadhaarguard/main/docs/demo.gif)
+
 General-purpose PII tools handle emails and US-style numbers well, but they
 mostly don't know Indian formats. A regex for "12 digits" flags every order ID
 in your logs. aadhaarguard checks the check digits that Indian IDs carry
@@ -12,9 +18,19 @@ in your logs. aadhaarguard checks the check digits that Indian IDs carry
 keywords like "aadhaar", "a/c" or "आधार" near a match before it reports
 anything ambiguous.
 
+## Try it in 30 seconds
+
 ```
 pip install aadhaarguard
+echo "Aadhaar 3588 1399 8697, UPI ravi@okaxis, order 4521" | aadhaarguard redact --style partial
 ```
+
+```
+Aadhaar XXXX XXXX 8697, UPI rXXX@okaxis, order 4521
+```
+
+The order number is left alone because it isn't a valid identifier. The demo
+above runs the same CLI on [examples/customer.txt](examples/customer.txt).
 
 ## Command line
 
@@ -23,7 +39,7 @@ $ aadhaarguard scan examples/customer.txt
 examples/customer.txt:2:10: aadhaar XXXX XXXX 8697 (0.90)
 examples/customer.txt:3:6: pan XXXXXX234F (0.99)
 examples/customer.txt:4:8: gstin XXXXXXXXXXXT2ZM (0.99)
-examples/customer.txt:5:9: phone +XX XXXXX X3210 (0.99)
+examples/customer.txt:5:9: phone +91 XXXXX X3210 (0.99)
 examples/customer.txt:6:6: upi rXXXXXXXXX@okaxis (0.99)
 examples/customer.txt:7:11: bank_account XXXXXXXXXX6789 (0.75)
 examples/customer.txt:7:32: ifsc XXXXXXX1234 (0.85)
@@ -62,7 +78,7 @@ for m in scan(text):
 # phone +91 98765 43210 29 44 0.99
 
 redact(text)                    # 'Aadhaar [AADHAAR], call [PHONE]'
-redact(text, style="partial")   # 'Aadhaar XXXX XXXX 8697, call +XX XXXXX X3210'
+redact(text, style="partial")   # 'Aadhaar XXXX XXXX 8697, call +91 XXXXX X3210'
 redact(text, style="mask")      # 'Aadhaar XXXX XXXX XXXX, call +XX XXXXX XXXXX'
 redact(text, style="hash")      # 'Aadhaar [AADHAAR:e786c1b9d1], call [PHONE:1a6f46a8fa]' (keyed, see below)
 ```
@@ -171,7 +187,7 @@ than misses.
 ```yaml
 repos:
   - repo: https://github.com/Pratix005/aadhaarguard
-    rev: v0.2.0
+    rev: v0.2.1
     hooks:
       - id: aadhaarguard
 ```
@@ -184,6 +200,9 @@ cd aadhaarguard
 python -m venv .venv && .venv/bin/pip install -e ".[dev]"   # Windows: .venv\Scripts\pip
 pytest
 ```
+
+`python scripts/make_demo.py` regenerates `docs/demo.gif` from real CLI
+output (needs `pip install pillow`).
 
 New detectors and more UPI handles are welcome; see
 [CONTRIBUTING.md](CONTRIBUTING.md).

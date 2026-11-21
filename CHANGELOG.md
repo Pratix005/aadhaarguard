@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.1 - 2026-11-21
+
+- `partial` redaction keeps a phone number's country code / trunk prefix:
+  `+91 XXXXX X3210` instead of `+XX XXXXX X3210`.
+- README: demo GIF, badges, a 30-second quick start.
+- `scripts/make_demo.py` renders the demo from real CLI output.
+
 ## 0.2.0 - 2026-11-21
 
 - Renamed from `bharatpii` to `aadhaarguard` (package, import, CLI command,

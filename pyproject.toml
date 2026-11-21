@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aadhaarguard"
-version = "0.2.0"
+version = "0.2.1"
 description = "Find and redact Indian personal data (Aadhaar, PAN, GSTIN, UPI, phone, vehicle numbers and more; 15 kinds) with checksum validation. No dependencies."
 readme = "README.md"
 license = "Apache-2.0"

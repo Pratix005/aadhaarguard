@@ -81,3 +81,9 @@ def test_logging_filter_exceptions():
 def test_logging_filter_bad_args_does_not_crash():
     rec = logging.LogRecord("x", logging.INFO, __file__, 1, "%d", ("notint",), None)
     assert RedactingFilter().filter(rec) is True
+
+
+def test_partial_phone_keeps_country_code():
+    assert partial_mask("phone", "+91 98765 43210") == "+91 XXXXX X3210"
+    assert partial_mask("phone", "09876543210") == "0XXXXXX3210"
+    assert partial_mask("phone", "9876543210") == "XXXXXX3210"
